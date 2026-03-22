@@ -1,0 +1,30 @@
+:root {
+  --background-color: #f8fafc;
+  --foreground-color: var(--text);
+  --section-max-width: 1200px;
+  --section-margin: 0 auto;
+  --section-padding-horizontal: 24px;
+  --page-padding-top: 40px;
+  --page-padding-bottom: 72px;
+
+  --surface-page: var(--background-color);
+  --surface-card: var(--white);
+  --surface-subtle: rgb(from var(--primary) r g b / 0.06);
+  --surface-soft: rgb(from var(--primary) r g b / 0.1);
+  --surface-strong: linear-gradient(
+    135deg,
+    rgb(from var(--primary) r g b / 0.96) 0%,
+    rgb(from var(--primary) calc(r + 24) calc(g + 6) b / 0.9) 100%
+  );
+
+  --text-title: color-mix(in srgb, var(--text) 35%, black);
+  --text-body: var(--text);
+  --text-muted: color-mix(in srgb, var(--text) 65%, white);
+
+  --border-subtle: color-mix(in srgb, var(--border) 72%, white);
+  --border-strong: rgb(from var(--primary) r g b / 0.24);
+
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 10px 24px rgb(from var(--primary) r g b / 0.12);
+}
