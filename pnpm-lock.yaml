@@ -34,8 +34,8 @@ importers:
         specifier: ^1.1.7
         version: 1.1.7
       typescript:
-        specifier: ~5.9.3
-        version: 5.9.3
+        specifier: ~6.0.2
+        version: 6.0.2
       vite:
         specifier: ^8.0.1
         version: 8.0.1(@types/node@25.5.0)(terser@5.46.0)
@@ -767,8 +767,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1477,7 +1477,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  typescript@5.9.3: {}
+  typescript@6.0.2: {}
 
   typical@4.0.0: {}
 
