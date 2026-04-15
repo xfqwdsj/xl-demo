@@ -26,10 +26,10 @@ importers:
         version: 0.11.0
       custom-element-jet-brains-integration:
         specifier: ^1.7.0
-        version: 1.7.0(prettier@3.8.1)
+        version: 1.7.0(prettier@3.8.3)
       prettier:
-        specifier: ^3.8.1
-        version: 3.8.1
+        specifier: ^3.8.3
+        version: 3.8.3
       rollup-plugin-minify-template-literals:
         specifier: ^1.1.7
         version: 1.1.7
@@ -682,8 +682,8 @@ packages:
     resolution: {integrity: sha512-OW/rX8O/jXnm82Ey1k44pObPtdblfiuWnrd8X7GJ7emImCOstunGbXUpp7HdBrFQX6rJzn3sPT397Wp5aCwCHg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.8.1:
-    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -973,10 +973,10 @@ snapshots:
   '@oxc-resolver/binding-win32-x64-msvc@11.19.1':
     optional: true
 
-  '@prettier/sync@0.5.5(prettier@3.8.1)':
+  '@prettier/sync@0.5.5(prettier@3.8.3)':
     dependencies:
       make-synchronized: 0.4.2
-      prettier: 3.8.1
+      prettier: 3.8.3
 
   '@rolldown/binding-android-arm64@1.0.0-rc.10':
     optional: true
@@ -1133,9 +1133,9 @@ snapshots:
 
   comment-parser@1.2.4: {}
 
-  custom-element-jet-brains-integration@1.7.0(prettier@3.8.1):
+  custom-element-jet-brains-integration@1.7.0(prettier@3.8.3):
     dependencies:
-      '@prettier/sync': 0.5.5(prettier@3.8.1)
+      '@prettier/sync': 0.5.5(prettier@3.8.3)
     transitivePeerDependencies:
       - prettier
 
@@ -1384,7 +1384,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.8.1: {}
+  prettier@3.8.3: {}
 
   queue-microtask@1.2.3: {}
 
