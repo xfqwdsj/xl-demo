@@ -10,12 +10,14 @@ export class AppCard extends LitElement {
   static styles = css`
     :host {
       display: block;
+      min-width: 0;
     }
 
     .card {
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
+      min-width: 0;
 
       gap: var(--app-card-gap, 0px);
       padding: var(--app-card-padding, 22px);

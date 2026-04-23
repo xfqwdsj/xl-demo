@@ -6,7 +6,6 @@ import "../../../components/app-table.js";
 import "../admin-grid.js";
 import "../admin-grid-item.js";
 import "../admin-input.js";
-import "../admin-select.js";
 import "../admin-placeholder.js";
 import "../admin-button.js";
 import "../admin-note-card.js";
@@ -96,7 +95,6 @@ export class SettingsCompanyPage extends AdminPageBase {
           <app-table
             .headers=${["开户行", "账号", "开户名", "操作"]}
             .rows=${[["工商银行广州分行", "****8888", "XX有限公司", "删除"]]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

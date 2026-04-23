@@ -5,7 +5,7 @@ import "../../../components/app-card.js";
 import "../../../components/app-table.js";
 import "../admin-grid.js";
 import "../admin-grid-item.js";
-import "../admin-select.js";
+import "../../../components/app-popover-menu.ts";
 import "../admin-button.js";
 import "../admin-status-badge.js";
 import "../admin-step-card.js";
@@ -42,20 +42,19 @@ export class SettingsSecurityPage extends AdminPageBase {
         </admin-grid>
 
         <app-card>
-          <strong>登录安全</strong>
+          <strong>安全策略</strong>
           <admin-grid .columns=${2} .gap=${16}>
             <div class="field">
               <label>双因素认证</label>
-              <admin-select
-                label="状态"
-                .options=${[
-                  { value: "enabled", label: "开启" },
-                  { value: "disabled", label: "关闭" },
+              <app-popover-menu
+                .items=${[
+                  { id: "enabled", content: "开启" },
+                  { id: "disabled", content: "关闭" },
                 ]}
-                .value=${"enabled"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`双因素认证: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`双因素认证: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>开启</button>
+              </app-popover-menu>
             </div>
             <div class="field">
               <label>登录设备管理</label>
@@ -65,40 +64,32 @@ export class SettingsSecurityPage extends AdminPageBase {
                 .onClick=${() => this.handleMockAction("查看设备")}
               ></admin-button>
             </div>
-          </admin-grid>
-        </app-card>
-
-        <app-card>
-          <strong>密码策略</strong>
-          <admin-grid .columns=${2} .gap=${16}>
             <div class="field">
               <label>密码强度</label>
-              <admin-select
-                label="要求"
-                .options=${[
-                  { value: "low", label: "低（6位）" },
-                  { value: "mid", label: "中（8位+大小写）" },
-                  { value: "high", label: "高（12位+特殊字符）" },
+              <app-popover-menu
+                .items=${[
+                  { id: "low", content: "低（6位）" },
+                  { id: "mid", content: "中（8位+大小写）" },
+                  { id: "high", content: "高（12位+特殊字符）" },
                 ]}
-                .value=${"mid"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`密码强度: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`密码强度: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>中（8位+大小写）</button>
+              </app-popover-menu>
             </div>
             <div class="field">
               <label>密码有效期</label>
-              <admin-select
-                label="天数"
-                .options=${[
-                  { value: "30", label: "30 天" },
-                  { value: "60", label: "60 天" },
-                  { value: "90", label: "90 天" },
-                  { value: "forever", label: "永不过期" },
+              <app-popover-menu
+                .items=${[
+                  { id: "30", content: "30 天" },
+                  { id: "60", content: "60 天" },
+                  { id: "90", content: "90 天" },
+                  { id: "forever", content: "永不过期" },
                 ]}
-                .value=${"90"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`密码有效期: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`密码有效期: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>90 天</button>
+              </app-popover-menu>
             </div>
           </admin-grid>
         </app-card>
@@ -139,7 +130,6 @@ export class SettingsSecurityPage extends AdminPageBase {
                 ></admin-status-badge>`,
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

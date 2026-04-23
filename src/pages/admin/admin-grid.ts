@@ -11,12 +11,17 @@ export class AdminGrid extends LitElement {
   static styles = css`
     :host {
       display: block;
+      min-width: 0;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
+    }
+
+    ::slotted(*) {
+      min-width: 0;
     }
 
     @media (max-width: 960px) {

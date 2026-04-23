@@ -88,7 +88,6 @@ export class SettingsUsersPage extends AdminPageBase {
                 "编辑 / 禁用",
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

@@ -168,7 +168,6 @@ export class FinancialPortraitPage extends AdminPageBase {
               ["运营效率", "68", "70", "86"],
               ["税务合规", "90", "80", "93"],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

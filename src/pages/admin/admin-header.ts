@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { headerStyles } from "../../components/app-header.ts";
 
 @customElement("admin-header")
@@ -71,13 +71,37 @@ export class AdminHeader extends LitElement {
       color: var(--text);
     }
 
+    .menu-toggle {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text);
+      font-size: 20px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
     @media (max-width: 768px) {
       .header-content {
-        padding: 0 16px;
+        padding: 0 12px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        column-gap: 4px;
+      }
+
+      .menu-toggle {
+        display: flex;
       }
 
       .brand {
         font-size: 16px;
+        min-width: 0;
       }
 
       .brand-logo {
@@ -101,9 +125,29 @@ export class AdminHeader extends LitElement {
     }
   `;
 
+  @property({ type: Boolean, attribute: "show-menu-toggle" })
+  showMenuToggle = false;
+
+  @property({ type: Boolean, attribute: "menu-open" })
+  menuOpen = false;
+
   render() {
     return html`
       <header class="header-content">
+        ${this.showMenuToggle
+          ? html`
+              <button
+                class="menu-toggle"
+                @click=${() =>
+                  this.dispatchEvent(new CustomEvent("toggle-sidebar"))}
+                aria-label="${this.menuOpen ? "关闭菜单" : "打开菜单"}"
+              >
+                <iconify-icon
+                  icon="${this.menuOpen ? "fa7-solid:xmark" : "fa7-solid:bars"}"
+                ></iconify-icon>
+              </button>
+            `
+          : null}
         <a class="brand" href="/dashboard.html">
           <img
             class="brand-logo"

@@ -5,7 +5,7 @@ import "../../../components/app-card.js";
 import "../../../components/app-table.ts";
 import "../admin-grid.js";
 import "../admin-grid-item.js";
-import "../admin-select.js";
+import "../../../components/app-popover-menu.ts";
 import "../admin-input.js";
 import "../admin-button.js";
 import "../admin-status-badge.js";
@@ -45,18 +45,24 @@ export class AutoAccountingPage extends AdminPageBase {
 
         <app-card>
           <div class="toolbar">
-            <admin-select
-              .options=${[{ value: "month", label: "日期范围：本月" }]}
-              .onChange=${(value: string) => this.handleDateRangeChange(value)}
-            ></admin-select>
-            <admin-select
-              .options=${[{ value: "all", label: "状态：全部" }]}
-              .onChange=${(value: string) => this.handleStatusChange(value)}
-            ></admin-select>
-            <admin-select
-              .options=${[{ value: "all", label: "科目筛选" }]}
-              .onChange=${(value: string) => this.handleSubjectFilter(value)}
-            ></admin-select>
+            <app-popover-menu
+              .items=${[{ id: "month", content: "日期范围：本月" }]}
+              @item-click=${(e: CustomEvent) => this.handleDateRangeChange(e.detail.id)}
+            >
+              <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>日期范围：本月</button>
+            </app-popover-menu>
+            <app-popover-menu
+              .items=${[{ id: "all", content: "状态：全部" }]}
+              @item-click=${(e: CustomEvent) => this.handleStatusChange(e.detail.id)}
+            >
+              <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>状态：全部</button>
+            </app-popover-menu>
+            <app-popover-menu
+              .items=${[{ id: "all", content: "科目筛选" }]}
+              @item-click=${(e: CustomEvent) => this.handleSubjectFilter(e.detail.id)}
+            >
+              <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>科目筛选</button>
+            </app-popover-menu>
           </div>
           <strong>凭证列表</strong>
           <app-table
@@ -101,7 +107,6 @@ export class AutoAccountingPage extends AdminPageBase {
                 ></admin-status-badge>`,
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
           <div class="toolbar">
             <admin-button
@@ -137,7 +142,6 @@ export class AutoAccountingPage extends AdminPageBase {
               ["采购办公用品", "银行存款", "", "¥500.00"],
               ["合计", "-", "¥500.00", "¥500.00"],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

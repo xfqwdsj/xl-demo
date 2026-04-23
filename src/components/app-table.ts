@@ -7,10 +7,15 @@ export class AppTable extends LitElement {
   static styles = css`
     :host {
       display: block;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .table-wrap {
+      min-width: 0;
+      max-width: 100%;
       overflow-x: auto;
+      overscroll-behavior-x: contain;
       border-radius: 12px;
       border: 1px solid color-mix(in srgb, var(--border) 72%, white);
       background: var(--white);
@@ -21,7 +26,8 @@ export class AppTable extends LitElement {
     }
 
     table {
-      width: 100%;
+      width: max-content;
+      min-width: 100%;
       border-collapse: collapse;
       font-size: 14px;
     }
@@ -59,9 +65,6 @@ export class AppTable extends LitElement {
   @property({ type: Array })
   rows: TableCell[][] = [];
 
-  @property({ type: Number, attribute: "min-width" })
-  minWidth = 680;
-
   @property({ type: String, attribute: "aria-label" })
   ariaLabel = "数据表格";
 
@@ -73,7 +76,6 @@ export class AppTable extends LitElement {
       <div class="table-wrap ${this.shadow ? "shadow" : ""}">
         <table
           aria-label="${this.ariaLabel}"
-          style="min-width:${this.minWidth}px;"
         >
           <thead>
             <tr>

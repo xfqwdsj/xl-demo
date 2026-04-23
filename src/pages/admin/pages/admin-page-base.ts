@@ -1,6 +1,7 @@
 import { css, LitElement } from "lit";
 import { spacingStyles } from "../../../components/spacing.ts";
 import { buttonStyles } from "../../../components/button.ts";
+import type { AppPopoverMenu } from "../../../components/app-popover-menu.ts";
 
 export class AdminPageBase extends LitElement {
   static styles = css`
@@ -57,5 +58,11 @@ export class AdminPageBase extends LitElement {
 
   protected handleCompanyChange(field: string, value: string) {
     window.alert(`公司信息 ${field}: ${value}`);
+  }
+
+  protected togglePopoverMenu(e: MouseEvent) {
+    e.stopPropagation();
+    const el = (e.target as HTMLElement).closest("app-popover-menu") as AppPopoverMenu | null;
+    el?.toggleMenu();
   }
 }

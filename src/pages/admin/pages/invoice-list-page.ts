@@ -6,7 +6,7 @@ import "../../../components/app-table.ts";
 import "../admin-grid.js";
 import "../admin-grid-item.js";
 import "../admin-button.js";
-import "../admin-select.js";
+import "../../../components/app-popover-menu.ts";
 import "../admin-input.js";
 import "../admin-status-badge.js";
 import "../admin-step-card.js";
@@ -55,14 +55,16 @@ export class InvoiceListPage extends AdminPageBase {
                 variant="primary"
                 .onClick=${() => this.handleMockAction("上传票据")}
               ></admin-button>
-              <admin-select
-                .options=${[
-                  { value: "batch", label: "批量操作" },
-                  { value: "export", label: "导出" },
-                  { value: "delete", label: "删除" },
+              <app-popover-menu
+                .items=${[
+                  { id: "batch", content: "批量操作" },
+                  { id: "export", content: "导出" },
+                  { id: "delete", content: "删除" },
                 ]}
-                .onChange=${(value: string) => this.handleBatchAction(value)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleBatchAction(e.detail.id)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>批量操作</button>
+              </app-popover-menu>
             </div>
             <div class="toolbar">
               <admin-input
@@ -121,7 +123,6 @@ export class InvoiceListPage extends AdminPageBase {
                 "查看 / 反冲",
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
           <div class="pager" aria-label="分页">
             <span class="page-btn">&lt;</span>

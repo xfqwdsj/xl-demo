@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import "./admin-header.ts";
 
 interface AdminMenuItem {
@@ -104,6 +104,7 @@ export class AdminShell extends LitElement {
   static styles = css`
     :host {
       display: block;
+      min-width: 0;
       min-height: 100dvh;
       background:
         radial-gradient(
@@ -122,7 +123,7 @@ export class AdminShell extends LitElement {
     admin-header {
       position: fixed;
       inset: 0 0 auto 0;
-      z-index: 20;
+      z-index: 30;
     }
 
     .sidebar {
@@ -131,7 +132,8 @@ export class AdminShell extends LitElement {
       left: 0;
       bottom: 0;
       width: 236px;
-      background: color-mix(in srgb, var(--white) 88%, var(--bg));
+      background: rgb(from var(--white) r g b / 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
       border-right: 1px solid var(--border);
       padding: 14px 12px;
       box-sizing: border-box;
@@ -285,6 +287,39 @@ export class AdminShell extends LitElement {
         padding: 20px;
       }
     }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 22;
+    }
+
+    .sidebar-overlay.open {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 25;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 16px;
+        padding-top: 72px;
+      }
+    }
   `;
 
   @property({ type: String, attribute: "active-page" })
@@ -302,11 +337,23 @@ export class AdminShell extends LitElement {
   @property({ type: Array })
   private expandedMenus: string[] = [];
 
+  @state()
+  private sidebarOpen = false;
+
   render() {
     return html`
-      <admin-header></admin-header>
+      <admin-header
+        show-menu-toggle
+        ?menu-open=${this.sidebarOpen}
+        @toggle-sidebar=${this.toggleSidebar}
+      ></admin-header>
 
-      <aside class="sidebar" aria-label="后台菜单">
+      <div
+        class="sidebar-overlay ${this.sidebarOpen ? "open" : ""}"
+        @click=${this.closeSidebar}
+      ></div>
+
+      <aside class="sidebar ${this.sidebarOpen ? "open" : ""}" aria-label="后台菜单">
         <nav class="menu">
           ${menuItems.map((item) => this.renderMenuItem(item))}
         </nav>
@@ -340,6 +387,14 @@ export class AdminShell extends LitElement {
       this.expandedMenus = [...this.expandedMenus, key];
     }
     this.requestUpdate();
+  }
+
+  private toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  private closeSidebar() {
+    this.sidebarOpen = false;
   }
 
   private isMenuExpanded(key: string): boolean {
@@ -394,6 +449,7 @@ export class AdminShell extends LitElement {
                     ? "active"
                     : ""}"
                   href="${child.href}"
+                  @click=${() => this.closeSidebar()}
                 >
                   <iconify-icon icon="${child.icon}"></iconify-icon>
                   <span class="menu-label">${child.label}</span>
@@ -408,6 +464,7 @@ export class AdminShell extends LitElement {
         <a
           class="menu-link ${this.activePage === item.key ? "active" : ""}"
           href="${item.href}"
+          @click=${() => this.closeSidebar()}
         >
           <iconify-icon icon="${item.icon}"></iconify-icon>
           <span class="menu-label">${item.label}</span>

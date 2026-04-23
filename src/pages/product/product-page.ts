@@ -444,7 +444,6 @@ export class ProductPage extends LitElement {
                 shadow
                 .headers=${section.table.headers}
                 .rows=${section.table.rows}
-                .minWidth=${section.table.minWidth ?? 760}
               ></app-table>
               ${section.points.length
                 ? html`

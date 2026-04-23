@@ -269,7 +269,6 @@ export class BusinessAnalysisPage extends AdminPageBase {
               ["XX商贸有限公司", "¥28,000", "22%", "↓5%", "下降"],
               ["XX餐饮管理公司", "¥22,000", "17%", "↑8%", "上升"],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

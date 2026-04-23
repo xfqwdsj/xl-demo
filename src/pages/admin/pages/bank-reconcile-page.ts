@@ -83,7 +83,6 @@ export class BankReconcilePage extends AdminPageBase {
                   ></admin-status-badge>`,
                 ],
               ]}
-              .minWidth=${760}
             ></app-table>
           </app-card>
           <app-card fill-height>
@@ -94,7 +93,6 @@ export class BankReconcilePage extends AdminPageBase {
                 ["03-10", "收到货款", "银行存款 ¥15,000", "应收账款"],
                 ["03-09", "支付货款", "应付账款", "银行存款 ¥8,000"],
               ]}
-              .minWidth=${760}
             ></app-table>
           </app-card>
         </admin-grid>

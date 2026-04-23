@@ -7,7 +7,7 @@ import "../../../components/app-table.ts";
 import "../admin-grid.js";
 import "../admin-grid-item.js";
 import "../admin-chip.js";
-import "../admin-select.js";
+import "../../../components/app-popover-menu.ts";
 import "../admin-step-card.js";
 import "../admin-note-card.js";
 import { layoutStyles } from "../styles/layout.ts";
@@ -162,11 +162,12 @@ export class FinancialReportsPage extends AdminPageBase {
               ></admin-chip>
             </div>
             <div class="toolbar">
-              <admin-select
-                .options=${[{ value: "2025-02-28", label: "2025年2月28日" }]}
-                .onChange=${(value: string) =>
-                  this.handleReportDateChange(value)}
-              ></admin-select>
+              <app-popover-menu
+                .items=${[{ id: "2025-02-28", content: "2025年2月28日" }]}
+                @item-click=${(e: CustomEvent) => this.handleReportDateChange(e.detail.id)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>2025年2月28日</button>
+              </app-popover-menu>
               <button class="btn btn-outline" type="button">导出Excel</button>
               <button class="btn btn-outline" type="button">导出PDF</button>
             </div>
@@ -182,7 +183,6 @@ export class FinancialReportsPage extends AdminPageBase {
               ["资产总计", "¥255,500.00"],
               ["负债及所有者权益总计", "¥255,500.00"],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

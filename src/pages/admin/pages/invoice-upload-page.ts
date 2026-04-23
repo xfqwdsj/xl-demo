@@ -89,7 +89,6 @@ export class InvoiceUploadPage extends AdminPageBase {
                 "查看 / 反冲",
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

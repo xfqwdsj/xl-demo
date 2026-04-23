@@ -80,7 +80,6 @@ export class TaxDeclarePage extends AdminPageBase {
               ["15", "本期应纳税额", "¥3,000", "¥9,000"],
               ["22", "本期应补（退）税额", "¥3,000", "¥9,000"],
             ]}
-            .minWidth=${760}
           ></app-table>
           <div class="toolbar">
             <button class="btn btn-outline" type="button">导出PDF</button>
@@ -121,7 +120,6 @@ export class TaxDeclarePage extends AdminPageBase {
                 "查看明细",
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 

@@ -4,7 +4,7 @@ import { AdminPageBase } from "./admin-page-base.js";
 import "../../../components/app-card.js";
 import "../admin-grid.js";
 import "../admin-grid-item.js";
-import "../admin-select.js";
+import "../../../components/app-popover-menu.ts";
 import "../admin-input.js";
 import { layoutStyles } from "../styles/layout.ts";
 
@@ -37,80 +37,69 @@ export class SettingsNotifyPage extends AdminPageBase {
         </admin-grid>
 
         <app-card>
-          <strong>通知规则</strong>
-          <admin-grid .columns=${2} .gap=${16}>
+          <strong>通知设置</strong>
+          <admin-grid .columns=${3} .gap=${16}>
             <div class="field">
               <label>票据到期提醒</label>
-              <admin-select
-                label="提前天数"
-                .options=${[
-                  { value: "1", label: "1 天" },
-                  { value: "3", label: "3 天" },
-                  { value: "7", label: "7 天" },
+              <app-popover-menu
+                .items=${[
+                  { id: "1", content: "1 天" },
+                  { id: "3", content: "3 天" },
+                  { id: "7", content: "7 天" },
                 ]}
-                .value=${"3"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`票据到期提醒: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`票据到期提醒: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>3 天</button>
+              </app-popover-menu>
             </div>
             <div class="field">
               <label>异常交易预警</label>
-              <admin-select
-                label="预警级别"
-                .options=${[
-                  { value: "low", label: "低" },
-                  { value: "mid", label: "中" },
-                  { value: "high", label: "高" },
+              <app-popover-menu
+                .items=${[
+                  { id: "low", content: "低" },
+                  { id: "mid", content: "中" },
+                  { id: "high", content: "高" },
                 ]}
-                .value=${"mid"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`异常交易预警: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`异常交易预警: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>中</button>
+              </app-popover-menu>
             </div>
-          </admin-grid>
-        </app-card>
-
-        <app-card>
-          <strong>通知渠道</strong>
-          <admin-grid .columns=${3} .gap=${16}>
             <div class="field">
               <label>站内信</label>
-              <admin-select
-                label="状态"
-                .options=${[
-                  { value: "enabled", label: "开启" },
-                  { value: "disabled", label: "关闭" },
+              <app-popover-menu
+                .items=${[
+                  { id: "enabled", content: "开启" },
+                  { id: "disabled", content: "关闭" },
                 ]}
-                .value=${"enabled"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`站内信: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`站内信: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>开启</button>
+              </app-popover-menu>
             </div>
             <div class="field">
               <label>邮件通知</label>
-              <admin-select
-                label="状态"
-                .options=${[
-                  { value: "enabled", label: "开启" },
-                  { value: "disabled", label: "关闭" },
+              <app-popover-menu
+                .items=${[
+                  { id: "enabled", content: "开启" },
+                  { id: "disabled", content: "关闭" },
                 ]}
-                .value=${"enabled"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`邮件通知: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`邮件通知: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>开启</button>
+              </app-popover-menu>
             </div>
             <div class="field">
               <label>短信通知</label>
-              <admin-select
-                label="状态"
-                .options=${[
-                  { value: "enabled", label: "开启" },
-                  { value: "disabled", label: "关闭" },
+              <app-popover-menu
+                .items=${[
+                  { id: "enabled", content: "开启" },
+                  { id: "disabled", content: "关闭" },
                 ]}
-                .value=${"disabled"}
-                .onChange=${(v: string) =>
-                  this.handleMockAction(`短信通知: ${v}`)}
-              ></admin-select>
+                @item-click=${(e: CustomEvent) => this.handleMockAction(`短信通知: ${e.detail.id}`)}
+              >
+                <button class="btn btn-outline" type="button" @click=${this.togglePopoverMenu}>关闭</button>
+              </app-popover-menu>
             </div>
           </admin-grid>
         </app-card>

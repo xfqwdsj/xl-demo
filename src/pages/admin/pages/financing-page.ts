@@ -98,7 +98,6 @@ export class FinancingPage extends AdminPageBase {
                 ></admin-status-badge>`,
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 
@@ -140,7 +139,6 @@ export class FinancingPage extends AdminPageBase {
                 "查看合同",
               ],
             ]}
-            .minWidth=${760}
           ></app-table>
         </app-card>
 
