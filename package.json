@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.7.6",
     "echarts": "^6.0.0",
     "iconify-icon": "^3.0.2",
     "lit": "^3.3.2",
@@ -18,10 +19,10 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",
     "custom-element-jet-brains-integration": "^1.7.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.3",
     "rollup-plugin-minify-template-literals": "^1.1.7",
-    "typescript": "~5.9.3",
-    "vite": "^8.0.1"
+    "typescript": "~6.0.3",
+    "vite": "^8.0.10"
   },
   "customElements": "custom-elements.json",
   "web-types": "./web-types.json"
